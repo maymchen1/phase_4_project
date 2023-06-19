@@ -40,3 +40,20 @@ const App = () => {
                   </li>
                   <li>
                     <button onClick={handleLogout}>Logout</button>
+                    </li>
+            </>
+          ) : (
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          )}
+        </ul>
+      </nav>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/users/:id">
+          <UserProfile />
+        </Route>
+        <Route path="/games/:id"></Route>
