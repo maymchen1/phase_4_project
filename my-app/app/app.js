@@ -25,3 +25,18 @@ const App = () => {
             console.log(error);
           });
       };
+
+      return (
+        <Router>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              {loggedInUser ? (
+                <>
+                  <li>
+                    <Link to={`/users/${loggedInUser.id}`}>Profile</Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout}>Logout</button>
