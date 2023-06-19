@@ -18,3 +18,10 @@ const App = () => {
     const handleLogin = (userData) => {
         // Implement login logic here, e.g., making a POST request to the backend to authenticate the user
         axios.post('/api/login', userData)
+        .then((response) => {
+            setLoggedInUser(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
