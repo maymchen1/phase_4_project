@@ -57,3 +57,14 @@ const App = () => {
           <UserProfile />
         </Route>
         <Route path="/games/:id"></Route>
+        <GameDetails />
+        </Route>
+        <Route path="/login">
+          <Login onLogin={handleLogin} />
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
+
+export default App;
