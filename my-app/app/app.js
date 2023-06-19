@@ -14,3 +14,7 @@ const App = () => {
       // Implement logout logic here, e.g., making a DELETE request to the backend to clear the session
       setLoggedInUser(null);
     };
+
+    const handleLogin = (userData) => {
+        // Implement login logic here, e.g., making a POST request to the backend to authenticate the user
+        axios.post('/api/login', userData)
