@@ -8,39 +8,39 @@ import UserProfile from './components/UserProfile';
 import GameDetails from './components/GameDetails';
 
 const App = () => {
-    const [loggedInUser, setLoggedInUser] = useState(null);
-  
-    const handleLogout = () => {
-      // Implement logout logic here, e.g., making a DELETE request to the backend to clear the session
-      setLoggedInUser(null);
-    };
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
-    const handleLogin = (userData) => {
-        // Implement login logic here, e.g., making a POST request to the backend to authenticate the user
-        axios.post('/api/login', userData)
-        .then((response) => {
-            setLoggedInUser(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      };
+  const handleLogout = () => {
+    // Implement logout logic here, e.g., making a DELETE request to the backend to clear the session
+    setLoggedInUser(null);
+  };
 
-      return (
-        <Router>
-          <nav>
-            <ul>
+  const handleLogin = (userData) => {
+    // Implement login logic here, e.g., making a POST request to the backend to authenticate the user
+    axios.post('/api/login', userData)
+      .then((response) => {
+        setLoggedInUser(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  return (
+    <Router>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          {loggedInUser ? (
+            <>
               <li>
-                <Link to="/">Home</Link>
+                <Link to={`/users/${loggedInUser.id}`}>Profile</Link>
               </li>
-              {loggedInUser ? (
-                <>
-                  <li>
-                    <Link to={`/users/${loggedInUser.id}`}>Profile</Link>
-                  </li>
-                  <li>
-                    <button onClick={handleLogout}>Logout</button>
-                    </li>
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
             </>
           ) : (
             <li>
@@ -56,8 +56,8 @@ const App = () => {
         <Route path="/users/:id">
           <UserProfile />
         </Route>
-        <Route path="/games/:id"></Route>
-        <GameDetails />
+        <Route path="/games/:id">
+          <GameDetails />
         </Route>
         <Route path="/login">
           <Login onLogin={handleLogin} />
